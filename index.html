@@ -1,5 +1,6 @@
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -89,7 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
         message.innerHTML = "Please experience this content using Google Chrome.";
         document.body.appendChild(message);
     }
-
+document.addEventListener('webkitmouseforcewillbegin', function(e) {
+    e.preventDefault();
+}, { passive: false });
+document.addEventListener('webkitmouseforcedown', function(e) {
+    e.preventDefault();
+}, { passive: false });
 
     const baseUrl = "https://highlight.xyz/mint/shape:0xF3851e1b7824BD920350E6Fe9B890bb76d01C9f7/t/";
     const awakenedlink = [
