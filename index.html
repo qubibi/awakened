@@ -51,6 +51,24 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isIOS && isSafari) {
+       const hako = document.getElementById('hako');
+       const iframe = document.querySelector('iframe');
+       if (hako) hako.remove();
+       if (iframe) iframe.remove();
+     const message = document.createElement('div');
+       message.style.cssText = `
+           position: fixed;           top: 50%;           left: 50%;           transform: translate(-50%, -50%);           background: rgba(0, 0, 0, 0.9);
+           color: white;           padding: 30px;           text-align: center;
+           z-index: 9999;           font-family: Arial, sans-serif;           max-width: 80%;           line-height: 1.5;
+       `;
+        message.innerHTML = "Please experience this content using Google Chrome.";
+        document.body.appendChild(message);
+    }
+
+
     const baseUrl = "https://highlight.xyz/mint/shape:0xF3851e1b7824BD920350E6Fe9B890bb76d01C9f7/t/";
     const awakenedlink = [
         ["#001", "1", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731949229&mi=1&gp=0&wa=0xf70da97812cb96acdf810712aa562db8dfa3dbef&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102379&ms=2&tid=1&h=0x1e0eb75a84586d317e0ef981d0482ec128edc0bdf2a6d17061c784ae2e6bb5b4&bh=0xee4ca155f4f5b17b66e4ea28aa8f64e9f457ca9daa3e805b0a48724c56c834f3"],
