@@ -11,16 +11,23 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  touch-action: none; -webkit-overflow-scrolling: none; }
+  touch-action: none; -webkit-overflow-scrolling: none; 
+  -webkit-user-select: none;  /* Safari */
+  -ms-user-select: none;      /* IE/Edge */
+  user-select: none;          /* 標準 */
+  -webkit-touch-callout: none; /* iOSでの長押しメニュー防止 */
+  -webkit-tap-highlight-color: transparent; /* タップ時のハイライトを消す */
+  
+  }
 		#hako { position: fixed; width: fit-content; 
 		background-color:#fff; border:5px solid #000; left:3vw;bottom:3vw }
-		#hako #bobo { background-color:#fff; border:3px solid #000; margin:2px; padding:7px 17px; text-align: center;}
+		#hako #bobo { background-color:#fff; border:3px solid #000; margin:2px; padding:6px 12px; text-align: center;}
 		h1, h2 { margin:0; padding:0; width: fit-content;line-height: 1;
   			font-family: "Roboto Slab", serif; font-optical-sizing: auto; display: inline-block;
 			transform: scaleY(1.1);
 		}
-		h1 { font-size:20px}
-		h2 { font-size:40px; font-weight: 900; margin-left:-7px}
+		h1 { font-size:16px}
+		h2 { font-size:32px; font-weight: 900; margin-left:-7px}
 		iframe { width:100%; height:100%; border:none}
 		a { text-decoration:none; color:inherit }
 	</style>
