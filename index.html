@@ -62,7 +62,14 @@
     user-select: none !important;
     touch-action: none !important;
         backface-visibility: hidden !important;
-
+}
+a {
+    pointer-events: auto !important;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    -webkit-touch-callout: default !important;
+    -webkit-user-drag: auto !important;
+    touch-action: manipulation !important; /* リンクのタッチ操作を有効化 */
 }
 	</style>
 	
