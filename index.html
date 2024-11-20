@@ -1,41 +1,47 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- SNS用 -->
+    <meta property="og:title" content="Awakened by qubibi">
+    <meta property="og:description" content="Close the eye and shout quietly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awakened.qubibi.org/">
+    <meta property="og:image" content="https://awakened.qubibi.org/snsimg.jpg">
+    <meta property="og:site_name" content="qubibi.org">
+
+
 <title>Awakened by qubibi</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 	<style>
-		body, html {margin:0; padding:0;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  touch-action: none; -webkit-overflow-scrolling: none; 
-  -webkit-user-select: none;  /* Safari */
-  -ms-user-select: none;      /* IE/Edge */
-  user-select: none;          /* 標準 */
-  -webkit-touch-callout: none; /* iOSでの長押しメニュー防止 */
-  -webkit-tap-highlight-color: transparent; /* タップ時のハイライトを消す */
-  
-  }
-		#hako { position: fixed; width: fit-content; 
-		background-color:#fff; border:5px solid #000; right:2vw;bottom:2vw }
-		#hako #bobo { background-color:#fff; border:3px solid #000; margin:2px; padding:6px 12px; text-align: center;}
-		h1, h2 { margin:0; padding:0; width: fit-content;line-height: 1;
-  			font-family: "Roboto Slab", serif; font-optical-sizing: auto; display: inline-block;
-			transform: scaleY(1.1);
-		}
-		h1 { font-size:20px}
-		h2 { font-size:42px; font-weight: 900; margin-left:-7px}
-@media screen and (max-width: 768px) {
-    h1 { font-size:16px}
-	 h2 { font-size:32px}
-	 #hako {right:4vw;bottom:4vw }
-}
-
-		iframe { width:100%; height:100%; border:none}
-		a { text-decoration:none; color:inherit }
+        body, html {margin:0; padding:0;
+            overflow: hidden;        position: fixed;        width: 100%;
+            height: 100%;        touch-action: none; -webkit-overflow-scrolling: none; 
+        }
+        body, html, div {
+            -webkit-user-select: none;  -ms-user-select: none;
+            user-select: none;  -webkit-touch-callout: none; 
+            -webkit-tap-highlight-color: transparent;
+        }
+        #hako { position: fixed; width: fit-content; 
+        background-color:#fff; border:5px solid #000; right:2vw;bottom:2vw }
+        #hako #bobo { background-color:#fff; border:3px solid #000; margin:2px; padding:6px 12px; text-align: center;}
+        h1, h2 { margin:0; padding:0; width: fit-content;line-height: 1;
+        font-family: "Roboto Slab", serif; font-optical-sizing: auto; display: inline-block;        transform: scaleY(1.1);
+        }
+        h1 { font-size:20px}
+        h2 { font-size:42px; font-weight: 900; margin-left:-7px}
+        @media screen and (max-width: 768px) {
+            h1 { font-size:16px}
+            h2 { font-size:32px}
+            #hako {right:4vw;bottom:4vw }
+        }
+        iframe { width:100%; height:100%; border:none}
+        a { text-decoration:none; color:inherit }
 	</style>
 	
 	<body>
@@ -51,10 +57,10 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isIOS && isSafari) {
-       const hako = document.getElementById('hako');
+    const isChrome = /CriOS/i.test(navigator.userAgent);
+    if (isIOS && isSafari && !isChrome) {       const hako = document.getElementById('hako');
        const iframe = document.querySelector('iframe');
        if (hako) hako.remove();
        if (iframe) iframe.remove();
