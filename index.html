@@ -22,10 +22,11 @@
             overflow: hidden;        position: fixed;        width: 100%;
             height: 100%;        touch-action: none; -webkit-overflow-scrolling: none; 
         }
-        body, html, div {
+        body, html, div, img, canvas, iframe {
             -webkit-user-select: none;  -ms-user-select: none;
             user-select: none;  -webkit-touch-callout: none; 
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;
+            
         }
         #hako { position: fixed; width: fit-content; 
         background-color:#fff; border:5px solid #000; right:2vw;bottom:2vw }
@@ -40,8 +41,23 @@
             h2 { font-size:32px}
             #hako {right:4vw;bottom:4vw }
         }
-        iframe { width:100%; height:100%; border:none}
+        iframe { width:100%; height:100%; border:none;    touch-action: none;
+    pointer-events: auto;  /* iframeは必要に応じて有効に */
+    -webkit-user-modify: read-only;
+    user-modify: read-only;}
         a { text-decoration:none; color:inherit }
+
+* {
+    /* 既存の設定 */
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    
+    /* 追加：拡大鏡対策 */
+    -webkit-user-modify: read-only !important;
+    -webkit-user-select: none !important;
+    -webkit-text-size-adjust: none !important;
+}
 	</style>
 	
 	<body>
@@ -93,6 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
         ["#014", "14", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950157&mi=1&gp=0&wa=0x302c8b11c4af766d5c03e27a8d7589c17540bdbd&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102843&ms=3&tid=14&h=0x49a42e22db13b7bb8a75900f722a450cb79ca14cfefe50f44b5bb363f71446ca&bh=0xdcd7b70d45399bcb847dba63d23c284c832be3b42041c8cb6135972d95df5cfe"],
         ["#015", "15", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950157&mi=2&gp=0&wa=0x302c8b11c4af766d5c03e27a8d7589c17540bdbd&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102843&ms=3&tid=15&h=0x49a42e22db13b7bb8a75900f722a450cb79ca14cfefe50f44b5bb363f71446ca&bh=0xdcd7b70d45399bcb847dba63d23c284c832be3b42041c8cb6135972d95df5cfe"],
         ["#016", "16", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950157&mi=3&gp=0&wa=0x302c8b11c4af766d5c03e27a8d7589c17540bdbd&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102843&ms=3&tid=16&h=0x49a42e22db13b7bb8a75900f722a450cb79ca14cfefe50f44b5bb363f71446ca&bh=0xdcd7b70d45399bcb847dba63d23c284c832be3b42041c8cb6135972d95df5cfe"]
+        ["#017", "17", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950303&mi=1&gp=0&wa=0x4a39ae58b605102913ac19b7c071da75b55b2674&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102916&ms=1&tid=17&h=0x8ed329efa472ff0927af264ec6e28797f738939a3707b7d7e884ad9e5bcd19b4&bh=0xff25652b5e8bf2a413612d2d180a8359fac89d6d327a6a4b40412e32694407c9"],
+        ["#018", "18", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950435&mi=1&gp=0&wa=0xf70da97812cb96acdf810712aa562db8dfa3dbef&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5102982&ms=1&tid=18&h=0xc5a2b67a56fe24058a895a2afc275806f9f728b2a25081dcccb3b9e7af2beb3a&bh=0x33a30487adaf9bea5537f2d849bd2104b7fd0927053ccbf61b402f14f4301c15"],
+        ["#019", "19", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950627&mi=1&gp=0&wa=0xe7e3d2421c1c2fc5657c52f71866e05aa8d459cb&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103078&ms=1&tid=19&h=0x9e61fb03b7fbf16e22ccfc9e926c6942256ac40465f309e81a3d74bcb143d223&bh=0xe149c25b4ce324aa8e95118845c38c7d43a13390411b54bce0e855ca6fa59c5b"],
+        ["#020", "20", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950805&mi=1&gp=0&wa=0xf70da97812cb96acdf810712aa562db8dfa3dbef&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103167&ms=1&tid=20&h=0x3cc4bd1b71c7aa2d3c094190a5ec2d186cd27dad029a243803bf5e4b12138159&bh=0x1ccbcba76b92f09a1be1e79256cef8874bd74924f4a81f081f5a11bb95d0c17a"]
+        ["#021", "21", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950845&mi=1&gp=0&wa=0xd9d836ebc67abeec65b29e586f89816dab991f69&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103187&ms=1&tid=21&h=0x95a5470e7fd9920fccf51dbe19a14b02e580bd7759ca0ed536003d7339bd6562&bh=0x42b55ec8ee877cb1f66df1c6fb18cb8feaa63ce389261cc78993c9289a6df228"],
+        ["#022", "22", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950917&mi=1&gp=0&wa=0x136bbfe37988f82f8585ed155615b75371489d45&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103223&ms=25&tid=22&h=0xb4ee159a2fdf5be62eafb98cccf7ff7d742ffe7bb416df3597565ec8adac012a&bh=0xfe2c931744f8597ce9e36a7b35a5a99ccc616ced2fb4f0c821909ac20adaaf5f"],
+        ["#023", "23", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950917&mi=2&gp=0&wa=0x136bbfe37988f82f8585ed155615b75371489d45&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103223&ms=25&tid=23&h=0xb4ee159a2fdf5be62eafb98cccf7ff7d742ffe7bb416df3597565ec8adac012a&bh=0xfe2c931744f8597ce9e36a7b35a5a99ccc616ced2fb4f0c821909ac20adaaf5f"],
+        ["#024", "24", "https://64evbwngi5ifik4orjfwesurpi34zutfstm3kfxpmdoyrfvad7eq.arweave.net/9wlQ2aZHUFQrjopLYkqRejfM0mWU2bUW72DdiJagH8k/index.html?t=1731950917&mi=3&gp=0&wa=0x136bbfe37988f82f8585ed155615b75371489d45&a=0xf3851e1b7824bd920350e6fe9b890bb76d01c9f7&c=360&gu=0&bn=5103223&ms=25&tid=24&h=0xb4ee159a2fdf5be62eafb98cccf7ff7d742ffe7bb416df3597565ec8adac012a&bh=0xfe2c931744f8597ce9e36a7b35a5a99ccc616ced2fb4f0c821909ac20adaaf5f"]
     ];
 
     const randomIndex = Math.floor(Math.random() * awakenedlink.length);
