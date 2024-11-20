@@ -22,11 +22,14 @@
         body, html {margin:0; padding:0;
             overflow: hidden;        position: fixed;        width: 100%;
             height: 100%;        touch-action: none; -webkit-overflow-scrolling: none; 
+            pointer-events: none !important;
         }
         body, html, div, img, canvas, iframe {
             -webkit-user-select: none;  -ms-user-select: none;
             user-select: none;  -webkit-touch-callout: none; 
             -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;
+                
+
             
         }
         #hako { position: fixed; width: fit-content; 
@@ -43,7 +46,7 @@
             #hako {right:4vw;bottom:4vw }
         }
         iframe { width:100%; height:100%; border:none;    touch-action: none;
-    pointer-events: auto;  /* iframeは必要に応じて有効に */
+    pointer-events: auto; 
     -webkit-user-modify: read-only;
     user-modify: read-only;}
         a { text-decoration:none; color:inherit }
@@ -58,6 +61,8 @@
     -webkit-user-drag: none !important;
     user-select: none !important;
     touch-action: none !important;
+        backface-visibility: hidden !important;
+
 }
 	</style>
 	
@@ -68,7 +73,7 @@
 <h2><a href="">#103</a></h2>
 </div></div>
 
-<iframe src="XXX">
+<iframe>
 </iframe>
 
 <script>
