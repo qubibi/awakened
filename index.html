@@ -20,14 +20,20 @@
   
   }
 		#hako { position: fixed; width: fit-content; 
-		background-color:#fff; border:5px solid #000; left:3vw;bottom:3vw }
+		background-color:#fff; border:5px solid #000; right:2vw;bottom:2vw }
 		#hako #bobo { background-color:#fff; border:3px solid #000; margin:2px; padding:6px 12px; text-align: center;}
 		h1, h2 { margin:0; padding:0; width: fit-content;line-height: 1;
   			font-family: "Roboto Slab", serif; font-optical-sizing: auto; display: inline-block;
 			transform: scaleY(1.1);
 		}
-		h1 { font-size:16px}
-		h2 { font-size:32px; font-weight: 900; margin-left:-7px}
+		h1 { font-size:20px}
+		h2 { font-size:42px; font-weight: 900; margin-left:-7px}
+@media screen and (max-width: 768px) {
+    h1 { font-size:16px}
+	 h2 { font-size:32px}
+	 #hako {right:4vw;bottom:4vw }
+}
+
 		iframe { width:100%; height:100%; border:none}
 		a { text-decoration:none; color:inherit }
 	</style>
